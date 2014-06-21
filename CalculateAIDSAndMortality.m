@@ -102,55 +102,7 @@ SMR=SMR.LoadData(MortalityTableFile, SMRFile, NumSims);
 
         TimeOFAIDSCalculation=toc;
         
-%         OutputGraphsMortality;
-        
 
-        
-%         hold on;
-%         Simi=0;
-%         for SimNum=1:100%Sims
-%             Simi=Simi+1;
-%             [f, x]=hist(YearOfDeathStorage(SimNum).v, 1980:2020);
-%             plot(x, f)
-%         end
-
-        
-        
-%     DeathsByYear=[];
-%     for SimNum=1:NumSims
-% %         [DeathsThisSimByYear, YearForPlot]=hist(YearOfDeathMat(:, SimNum), YearsToPlotOver+0.5);
-%         [DeathsThisSimByYear, YearForPlot]=hist(YearOfDeathStorage(SimNum).v, YearsToPlotOver+0.5);
-%         DeathsByYear=[DeathsByYear; DeathsThisSimByYear];
-%     end
-    
-    
-    
-    
-    
-
-    
-    
-%     %Determine diagnoses by year
-%     DiagnosisDates=zeros(1, NoPatients);
-%     for i=1:NoPatients
-%         if mod(i, 1000)==0
-%             disp([i])
-%         end
-%         DiagnosisDates(i)=Patient(i).DateOfDiagnosisContinuous;
-%     end
-%     
-%     
-%     %% Plotting output
-%     DiagnosesByYear=hist(DiagnosisDates, YearsToPlotOver+0.5);
-%     plot(YearsToPlotOver, DiagnosesByYear);
-%     
-%     UCI=prctile(DeathsByYear, 97.5, 1);
-%     LCI=prctile(DeathsByYear, 2.5, 1);
-%     MedianDeaths=prctile(DeathsByYear, 50, 1);
-%     plot(YearsToPlotOver, MedianDeaths);
-%     hold on;
-%     plot(YearsToPlotOver, UCI);
-%     plot(YearsToPlotOver, LCI);
     
     
     %% Save data to a new patient file, identifier 2

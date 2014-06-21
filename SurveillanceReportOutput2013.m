@@ -5,7 +5,10 @@ TimeALL=tic;
 
 %% Load settings for the simualtion
 % LoadSettings
-LoadSettings2013
+YearOfDiagnosedDataEnd=2013;% for data that doesn't go beyond 2013
+HIVFile='Imputation\HIVAug2013Imputation.xls';
+
+LoadSettings
 
 
 if InitialisePCToSRThisSim==false
@@ -40,7 +43,7 @@ CalculateAIDSAndMortality
 %% Collate results for table 6.1.1
 
 clear Temp
-YearRanges=1980:2013;
+YearRanges=1980:YearOfDiagnosedDataEnd;
 [~, YearSize]=size(YearRanges);
 SimSize=100;
 GenderSize=2;
@@ -51,7 +54,7 @@ TotalPeople=zeros(34, SimSize);
 MatrixValues=zeros(YearSize, GenderSize, StateSize, SimSize);
 
 YearCount=0;
-for Year=1980:2013
+for Year=1980:YearOfDiagnosedDataEnd
     YearCount=YearCount+1;
     disp(Year)
     for i=1:NoPatients
@@ -76,11 +79,11 @@ plot(YearRanges, Results)
 
 ResultsDetailed=median(MatrixValues, 4);
 % The 2012 report figure
-End2011Table=squeeze(ResultsDetailed(YearRanges==2012, :, :));
+LastYearsTable=squeeze(ResultsDetailed(YearRanges==YearOfDiagnosedDataEnd-1, :, :));
 % The 2013 report figure
-End2012Table=squeeze(ResultsDetailed(YearRanges==2013, :, :));
+ThisYearsTable=squeeze(ResultsDetailed(YearRanges==YearOfDiagnosedDataEnd, :, :));
 
 
-ResultFor2013Report=End2012Table';
+ResultForReport=ThisYearsTable';
 
 
