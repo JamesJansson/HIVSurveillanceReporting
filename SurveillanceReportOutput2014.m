@@ -58,7 +58,7 @@ SimSize=100;
 GenderSize=2;
 StateSize=9;
 [~, NoPatients]=size(Patient);
-TotalPeople=zeros(34, SimSize);
+TotalPeople=zeros(YearOfDiagnosedDataEnd-1980+1, SimSize);
 
 MatrixValues=zeros(YearSize, GenderSize, StateSize, SimSize);
 
@@ -95,4 +95,12 @@ ThisYearsTable=squeeze(ResultsDetailed(YearRanges==YearOfDiagnosedDataEnd, :, :)
 
 ResultForReport=ThisYearsTable';
 
-% xlswrite(
+% NSW	2	1
+% VIC	7	2
+% QLD	4	3
+% SA	5	4
+% WA	8	5
+% TAS	6	6
+% NT	3	7
+% ACT	1	8
+

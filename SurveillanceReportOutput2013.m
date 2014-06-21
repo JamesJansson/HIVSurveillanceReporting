@@ -56,7 +56,7 @@ SimSize=100;
 GenderSize=2;
 StateSize=9;
 [~, NoPatients]=size(Patient);
-TotalPeople=zeros(34, SimSize);
+TotalPeople=zeros(YearOfDiagnosedDataEnd-1980+1, SimSize);
 
 MatrixValues=zeros(YearSize, GenderSize, StateSize, SimSize);
 
