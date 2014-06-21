@@ -42,7 +42,7 @@ DATA subset;
   SET work.miout2;
 IF _Imputation_ = 1;
 
-PROC EXPORT DATA= WORK.subset OUTFILE= "C:\Users\Jjansson\Documents\GitHub\BackProjection\Imputation\hiv20062014dataincompleteimputation.xls" DBMS=XLS REPLACE;
+PROC EXPORT DATA= WORK.subset OUTFILE= "C:\Users\jjansson\Documents\GitHub\HIVSurveillanceReporting\Imputation\hiv20062014dataincompleteimputation.xls" DBMS=XLS REPLACE;
 SHEET="Dataset_1";
 RUN;
 
