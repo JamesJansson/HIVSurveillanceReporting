@@ -10,7 +10,14 @@ HIVFile='Imputation\HIVAug2013Imputation.xls';
 SheetName='Dataset_1';
 LoadSettings
 
+%% Seed the random variables
+RandomNumberStream = RandStream('mlfg6331_64','Seed',1385646);
+RandStream.setGlobalStream(RandomNumberStream);
 
+%Use the below code in any parfor loop to use appropriate substreams for the rand generator (i is the loop number)
+%set(RandomNumberStream,'Substream',SimNum);
+
+%%
 if InitialisePCToSRThisSim==false
     load([ParameterLocalStorageLocation 'PC2SR.mat']);%If PC2SR file cannot be found, it may need to be generated
 else

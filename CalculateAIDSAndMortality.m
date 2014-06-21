@@ -75,6 +75,8 @@ SMR=SMR.LoadData(MortalityTableFile, SMRFile, NumSims);
     MortalityTimer=tic;
     matlabpool(getenv('NUMBER_OF_PROCESSORS'));
     parfor SimNum=1:NumSims
+        %% Seed the random variables
+        set(RandomNumberStream,'Substream',SimNum);
 %     for SimNum=1:NumSims
         disp(['Performing mortality calculation on sim ' num2str(SimNum) ' of ' num2str(NumSims) ' ' num2str(toc(MortalityTimer)) 'seconds']);
         LoopSMR=SMR.RestartRandomNumbers();%Put here to ensure matlab parfor doesn't get confused
