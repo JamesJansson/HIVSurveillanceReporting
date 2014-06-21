@@ -5,9 +5,9 @@ TimeALL=tic;
 
 %% Load settings for the simualtion
 % LoadSettings
-YearOfDiagnosedDataEnd=2013;% for data that doesn't go beyond 2013
-HIVFile='Imputation\HIVAug2013Imputation.xls';
-SheetName='Dataset_1';
+YearOfDiagnosedDataEnd=2014;% for data that doesn't go beyond 2013
+HIVFile='Imputation\hiv20062014dataincomplete.xls';
+SheetName='Sheet1';
 LoadSettings
 
 
@@ -86,4 +86,4 @@ ThisYearsTable=squeeze(ResultsDetailed(YearRanges==YearOfDiagnosedDataEnd, :, :)
 
 ResultForReport=ThisYearsTable';
 
-
+% xlswrite(
