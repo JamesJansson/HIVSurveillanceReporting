@@ -14,7 +14,7 @@ NumSims=100;
 SMR=MortalityClass;
 
 MortalityTableFile= 'MortalityData\MortalityTables.xls';
-SMRFile= 'MortalityData\HIVStandardisedMortalityRateOriginalValuesFromStudy.xlsx';
+SMRFile= 'MortalityData\HIVStandardisedMortalityRate.xlsx';
 SMR=SMR.LoadData(MortalityTableFile, SMRFile, NumSims);
 
 
@@ -104,8 +104,15 @@ SMR=SMR.LoadData(MortalityTableFile, SMRFile, NumSims);
 
         TimeOFAIDSCalculation=toc;
         
-
-    
+%% Collect up year of death
+YearOfDeathMatrix=zeros(SimNum, NoPatients);
+for SimNum=1:NumSims
+    YearOfDeathMatrix(SimNum, :)=YearOfDeathStorage(SimNum).v;
+end
+YearOfDeathVector=reshape(YearOfDeathMatrix, 1, []);
+YearOfDeathHist=hist(YearOfDeathVector, 1980:2100);
+YearOfDeathHist=YearOfDeathHist/NumSims;
+plot(1980:2100, YearOfDeathHist)    
     
     %% Save data to a new patient file, identifier 2
     Identifier=2;
@@ -113,4 +120,5 @@ SMR=SMR.LoadData(MortalityTableFile, SMRFile, NumSims);
     
     save('PatientSaveFiles/SMR.mat', 'SMR');
 
-
+    save('PatientSaveFiles/YearOfDeathStorage.mat', 'YearOfDeathStorage');
+    save('PatientSaveFiles/YearOfDeathHist.mat', 'YearOfDeathHist');

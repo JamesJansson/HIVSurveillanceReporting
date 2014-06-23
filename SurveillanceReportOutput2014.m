@@ -6,8 +6,9 @@ TimeALL=tic;
 %% Load settings for the simualtion
 % LoadSettings
 YearOfDiagnosedDataEnd=2014;% for data that doesn't go beyond 2013
-HIVFile='Imputation\hiv20062014dataincomplete.xls';
-SheetName='Sheet1';
+% HIVFile='Imputation\hiv20062014dataincompleteimputation.xls';
+HIVFile='Imputation\hiv20062014dataincompleteexposureimputation.xls';
+SheetName='Dataset_1';
 LoadSettings
 
 
@@ -82,18 +83,30 @@ for Year=1980:YearOfDiagnosedDataEnd
     end
 end
 
-Results=median(TotalPeople, 2);
+TotalMedian=median(TotalPeople, 2);
+TotalLCI=prctile(TotalPeople, 2.5, 2);
+TotalUCI=prctile(TotalPeople, 97.5, 2);
 hold off
-plot(YearRanges, Results)
+plot(YearRanges, TotalMedian)
+
+TotalThisYearUncertainty=[TotalMedian(YearRanges==YearOfDiagnosedDataEnd),TotalLCI(YearRanges==YearOfDiagnosedDataEnd),TotalUCI(YearRanges==YearOfDiagnosedDataEnd) ];
 
 ResultsDetailed=median(MatrixValues, 4);
+ResultsDetailedLCI=prctile(MatrixValues, 2.5, 4);
+ResultsDetailedUCI=prctile(MatrixValues, 97.5, 4);
+
+
 % The 2012 report figure
 LastYearsTable=squeeze(ResultsDetailed(YearRanges==YearOfDiagnosedDataEnd-1, :, :));
 % The 2013 report figure
 ThisYearsTable=squeeze(ResultsDetailed(YearRanges==YearOfDiagnosedDataEnd, :, :));
+ThisYearsTableLCI=squeeze(ResultsDetailedLCI(YearRanges==YearOfDiagnosedDataEnd, :, :));
+ThisYearsTableUCI=squeeze(ResultsDetailedUCI(YearRanges==YearOfDiagnosedDataEnd, :, :));
 
 
 ResultForReport=ThisYearsTable';
+ResultForReportLCI=ThisYearsTableLCI;
+ResultForReportUCI=ThisYearsTableUCI;
 
 % NSW	2	1
 % VIC	7	2

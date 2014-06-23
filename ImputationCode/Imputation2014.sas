@@ -1,7 +1,7 @@
 PROC IMPORT OUT= WORK.imputation
-            DATAFILE= "C:\Users\jjansson\Documents\GitHub\HIVSurveillanceReporting\Imputation\hiv20062014dataincomplete.xls" 
+            DATAFILE= "C:\Users\jjansson\Documents\GitHub\HIVSurveillanceReporting\Imputation\hiv20062014dataincompleteexposure.xls" 
             DBMS=EXCEL REPLACE;
-     SHEET="Data"; 
+     SHEET="Sheet1"; 
      GETNAMES=YES;
      MIXED=YES;
      SCANTEXT=YES;
@@ -42,7 +42,7 @@ DATA subset;
   SET work.miout2;
 IF _Imputation_ = 1;
 
-PROC EXPORT DATA= WORK.subset OUTFILE= "C:\Users\jjansson\Documents\GitHub\HIVSurveillanceReporting\Imputation\hiv20062014dataincompleteimputation.xls" DBMS=XLS REPLACE;
+PROC EXPORT DATA= WORK.subset OUTFILE= "C:\Users\jjansson\Documents\GitHub\HIVSurveillanceReporting\Imputation\hiv20062014dataincompleteexposureimputation.xls" DBMS=XLS REPLACE;
 SHEET="Dataset_1";
 RUN;
 

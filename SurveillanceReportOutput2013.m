@@ -6,7 +6,8 @@ TimeALL=tic;
 %% Load settings for the simualtion
 % LoadSettings
 YearOfDiagnosedDataEnd=2013;% for data that doesn't go beyond 2013
-HIVFile='Imputation\HIVAug2013Imputation.xls';
+% HIVFile='Imputation\HIVAug2013Imputation.xls';
+HIVFile='Imputation\HIVFeb2013Imputation.xls';
 SheetName='Dataset_1';
 LoadSettings
 
