@@ -105,8 +105,8 @@ ThisYearsTableUCI=squeeze(ResultsDetailedUCI(YearRanges==YearOfDiagnosedDataEnd,
 
 
 ResultForReport=ThisYearsTable';
-ResultForReportLCI=ThisYearsTableLCI;
-ResultForReportUCI=ThisYearsTableUCI;
+ResultForReportLCI=ThisYearsTableLCI';
+ResultForReportUCI=ThisYearsTableUCI';
 
 % NSW	2	1
 % VIC	7	2
