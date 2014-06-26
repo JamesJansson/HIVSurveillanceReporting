@@ -90,15 +90,36 @@ hold off
 plot(YearRanges, TotalMedian)
 
 TotalThisYearUncertainty=[TotalMedian(YearRanges==YearOfDiagnosedDataEnd),TotalLCI(YearRanges==YearOfDiagnosedDataEnd),TotalUCI(YearRanges==YearOfDiagnosedDataEnd) ];
+disp(TotalThisYearUncertainty);
+TotalLastYearUncertainty=[TotalMedian(YearRanges==YearOfDiagnosedDataEnd-1),TotalLCI(YearRanges==YearOfDiagnosedDataEnd-1),TotalUCI(YearRanges==YearOfDiagnosedDataEnd-1) ];
 
+% Results by state
+StateSum=squeeze(sum(MatrixValues, 2));
+ResultsState=median(StateSum, 3);
+ResultsStateLCI=prctile(StateSum, 2.5, 3);
+ResultsStateUCI=prctile(StateSum, 97.5, 3);
+
+% 2012
+StateUncertaintyLastYear=[ResultsState(YearRanges==YearOfDiagnosedDataEnd-1, :);ResultsStateLCI(YearRanges==YearOfDiagnosedDataEnd-1, :);ResultsStateUCI(YearRanges==YearOfDiagnosedDataEnd-1, :) ];
+%2013
+StateUncertaintyThisYear=[ResultsState(YearRanges==YearOfDiagnosedDataEnd, :);ResultsStateLCI(YearRanges==YearOfDiagnosedDataEnd, :);ResultsStateUCI(YearRanges==YearOfDiagnosedDataEnd, :) ];
+
+% Results by sex
+SexSum=squeeze(sum(MatrixValues, 3));
+ResultsSex=median(SexSum, 3);
+ResultsSexLCI=prctile(SexSum, 2.5, 3);
+ResultsSexUCI=prctile(SexSum, 97.5, 3);
+SexUncertaintyThisYear=[ResultsSex(YearRanges==YearOfDiagnosedDataEnd, :);ResultsSexLCI(YearRanges==YearOfDiagnosedDataEnd, :);ResultsSexUCI(YearRanges==YearOfDiagnosedDataEnd, :) ];
+
+
+% Results by sex and state
 ResultsDetailed=median(MatrixValues, 4);
 ResultsDetailedLCI=prctile(MatrixValues, 2.5, 4);
 ResultsDetailedUCI=prctile(MatrixValues, 97.5, 4);
 
-
-% The 2012 report figure
+% The 2012 report figure (for checking)
 LastYearsTable=squeeze(ResultsDetailed(YearRanges==YearOfDiagnosedDataEnd-1, :, :));
-% The 2013 report figure
+% The 2013 report figures by sex and state
 ThisYearsTable=squeeze(ResultsDetailed(YearRanges==YearOfDiagnosedDataEnd, :, :));
 ThisYearsTableLCI=squeeze(ResultsDetailedLCI(YearRanges==YearOfDiagnosedDataEnd, :, :));
 ThisYearsTableUCI=squeeze(ResultsDetailedUCI(YearRanges==YearOfDiagnosedDataEnd, :, :));
