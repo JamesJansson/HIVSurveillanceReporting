@@ -50,11 +50,11 @@ RUN;
 
 
 
-/*DATA testonly;
+DATA testonly;
   SET work.miout2;
 IF _Imputation_ = 2;
 
-PROC EXPORT DATA= WORK.subset OUTFILE= "C:\Users\Jjansson\Documents\GitHub\BackProjection\Imputation\HIVFeb2013Imputation2.xls" 
+PROC EXPORT DATA= WORK.subset OUTFILE= "C:\Users\Jjansson\Documents\GitHub\HIVSurveillanceReporting\Imputation\hiv20062014dataincompleteexposureimputationtest2.xls" 
             DBMS=XLS REPLACE;
      SHEET="Dataset_2"; 
 RUN;
