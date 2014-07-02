@@ -110,9 +110,33 @@ for SimNum=1:NumSims
     YearOfDeathMatrix(SimNum, :)=YearOfDeathStorage(SimNum).v;
 end
 YearOfDeathVector=reshape(YearOfDeathMatrix, 1, []);
-YearOfDeathHist=hist(YearOfDeathVector, 1980:2100);
+YearOfDeathHist=hist(YearOfDeathVector, (1980:2100)+0.5);
 YearOfDeathHist=YearOfDeathHist/NumSims;
-plot(1980:2100, YearOfDeathHist)    
+bar(1980:2100, YearOfDeathHist)    
+xlim([1979.5 2013.5])
+CummDeaths=[];
+CummulativeSum=0;
+for elem=YearOfDeathHist
+    CummulativeSum=CummulativeSum+elem;
+    CummDeaths=[CummDeaths CummulativeSum];
+end
+plot(1980:2100, CummDeaths) 
+
+%% Collect up diagnoses
+DiagnosisVector=zeros(1, NoPatients);
+for i=1:NoPatients
+    DiagnosisVector(i)=Patient(i).DateOfDiagnosisContinuous;
+end
+DiagnosisHist=hist(DiagnosisVector, (1980:2100)+0.5);
+plot(1980:2100, DiagnosisHist) 
+
+CummDiagnosis=[];
+CummulativeSum=0;
+for elem=DiagnosisHist
+    CummulativeSum=CummulativeSum+elem;
+    CummDiagnosis=[CummDiagnosis CummulativeSum];
+end
+plot(1980:2100, CummDiagnosis) 
     
     %% Save data to a new patient file, identifier 2
     Identifier=2;
