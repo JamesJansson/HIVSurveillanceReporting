@@ -43,6 +43,8 @@ disp('Loading saved basic patient class data');
 %Add state data to the system
 Patient=GeoAddLocationData(Patient, LocationDataMatrix, PC2SR);
 
+[Patient, DuplicatePatient]=RemoveDuplicates(Patient);
+
 Identifier=1;
 SavePatientClass(Patient, 'PatientSaveFiles',  Identifier);
 
